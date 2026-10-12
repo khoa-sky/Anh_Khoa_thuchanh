@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6ce19475e17c4cf88f0b71c566a147cf" Name="Diagram1" ZoomLevel="70">
+        <EntityTypeShape EntityType="QL_CA_FEModel.account" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_CA_FEModel.ban" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_CA_FEModel.chi_tiet_hoa_don" Width="1.5" PointX="7.5" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_CA_FEModel.hoa_don" Width="1.5" PointX="5.25" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_CA_FEModel.loai_mon" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_CA_FEModel.mon" Width="1.5" PointX="5.25" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_CA_FEModel.nhan_vien" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_CA_FEModel.thanh_toan" Width="1.5" PointX="7.5" PointY="6.625" IsExpanded="true" />
+        <AssociationConnector Association="QL_CA_FEModel.FK__nhan_vien__ma_ac__3C69FB99" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_CA_FEModel.FK__hoa_don__ma_ban__48CFD27E" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_CA_FEModel.FK__chi_tiet___ma_hd__4D94879B" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_CA_FEModel.FK__chi_tiet___ma_mo__4E88ABD4" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_CA_FEModel.FK__hoa_don__ma_nv__49C3F6B7" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_CA_FEModel.FK__thanh_toa__ma_hd__534D60F1" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_CA_FEModel.FK__mon__ma_loai__440B1D61" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

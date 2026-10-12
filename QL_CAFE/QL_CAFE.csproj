@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.6.0-preview1-final\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.6.0-preview1-final\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E273BDD8-6A36-4490-A62F-713F450052AC}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>QL_CAFE</RootNamespace>
+    <AssemblyName>QL_CAFE</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.6.0-preview1-final\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.6.0-preview1-final\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Guna.UI">
+      <HintPath>..\packages\Guna.UI.2.0.0.1\lib\net40\Guna.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Guna.UI2, Version=2.0.4.7, Culture=neutral, PublicKeyToken=8b9d14aa5142e261, processorArchitecture=MSIL">
+      <HintPath>..\packages\Guna.UI2.WinForms.2.0.4.7\lib\net472\Guna.UI2.dll</HintPath>
+    </Reference>
+    <Reference Include="iTextSharp, Version=4.1.6.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca">
+      <HintPath>..\packages\iTextSharp-LGPL.4.1.6\lib\iTextSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Resources.Extensions">
+      <HintPath>..\packages\System.Resources.Extensions.4.6.0\lib\netstandard2.0\System.Resources.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Memory">
+      <HintPath>..\packages\System.Memory.4.5.3\lib\netstandard2.0\System.Memory.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Buffers">
+      <HintPath>..\packages\System.Buffers.4.4.0\lib\netstandard2.0\System.Buffers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Numerics.Vectors">
+      <HintPath>..\packages\System.Numerics.Vectors.4.4.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="zxing, Version=0.16.11.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
+      <HintPath>..\packages\ZXing.Net.0.16.11\lib\net47\zxing.dll</HintPath>
+    </Reference>
+    <Reference Include="zxing.presentation, Version=0.16.11.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
+      <HintPath>..\packages\ZXing.Net.0.16.11\lib\net47\zxing.presentation.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="account.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ban.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="chi_tiet_hoa_don.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAC_BAN.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DAC_BAN.Designer.cs">
+      <DependentUpon>DAC_BAN.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DANG_NHAP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DANG_NHAP.Designer.cs">
+      <DependentUpon>DANG_NHAP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DonView.cs" />
+    <Compile Include="DO_UONG.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DO_UONG.Designer.cs">
+      <DependentUpon>DO_UONG.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_QR.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_QR.Designer.cs">
+      <DependentUpon>Form_QR.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GIOI_THIEU.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GIOI_THIEU.Designer.cs">
+      <DependentUpon>GIOI_THIEU.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HashHelper.cs" />
+    <Compile Include="hoa_don.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="loai_mon.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model1.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="mon.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MonView.cs" />
+    <Compile Include="MonEditorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="nhan_vien.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OTP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OTP.Designer.cs">
+      <DependentUpon>OTP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QL_MON.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QL_MON.Designer.cs">
+      <DependentUpon>QL_MON.cs</DependentUpon>
+    </Compile>
+    <Compile Include="QL_DON.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QL_DON.Designer.cs">
+      <DependentUpon>QL_DON.cs</DependentUpon>
+    </Compile>
+    <Compile Include="QUEN_MK.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QUEN_MK.Designer.cs">
+      <DependentUpon>QUEN_MK.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TAI_KHOAN.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TAI_KHOAN.Designer.cs">
+      <DependentUpon>TAI_KHOAN.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TAO_MK.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TAO_MK.Designer.cs">
+      <DependentUpon>TAO_MK.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TAO_TK.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TAO_TK.Designer.cs">
+      <DependentUpon>TAO_TK.cs</DependentUpon>
+    </Compile>
+    <Compile Include="thanh_toan.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TRANG_CHU.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TRANG_CHU.Designer.cs">
+      <DependentUpon>TRANG_CHU.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl1.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControl1.Designer.cs">
+      <DependentUpon>UserControl1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl2.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControl2.Designer.cs">
+      <DependentUpon>UserControl2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl3.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControl3.Designer.cs">
+      <DependentUpon>UserControl3.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="DAC_BAN.resx">
+      <DependentUpon>DAC_BAN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DANG_NHAP.resx">
+      <DependentUpon>DANG_NHAP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DO_UONG.resx">
+      <DependentUpon>DO_UONG.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_QR.resx">
+      <DependentUpon>Form_QR.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GIOI_THIEU.resx">
+      <DependentUpon>GIOI_THIEU.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OTP.resx">
+      <DependentUpon>OTP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="QL_MON.resx">
+      <DependentUpon>QL_MON.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QL_DON.resx">
+      <DependentUpon>QL_DON.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QUEN_MK.resx">
+      <DependentUpon>QUEN_MK.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TAI_KHOAN.resx">
+      <DependentUpon>TAI_KHOAN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TAO_MK.resx">
+      <DependentUpon>TAO_MK.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TAO_TK.resx">
+      <DependentUpon>TAO_TK.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TRANG_CHU.resx">
+      <DependentUpon>TRANG_CHU.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControl1.resx">
+      <DependentUpon>UserControl1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControl2.resx">
+      <DependentUpon>UserControl2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControl3.resx">
+      <DependentUpon>UserControl3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EntityDeploy Include="Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="atm-card.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="drink.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Model1.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
+    </Content>
+    <Content Include="round-table.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="salary.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Office.Interop.Excel">
+      <HintPath>..\packages\OfficeInterop.15.0\lib\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="office">
+      <HintPath>..\packages\OfficeInterop.15.0\lib\OFFICE.DLL</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.Vbe.Interop">
+      <HintPath>..\packages\OfficeInterop.15.0\lib\Microsoft.Vbe.Interop.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.6.0-preview1-final\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.6.0-preview1-final\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.6.0-preview1-final\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.6.0-preview1-final\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.6.0-preview1-final\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.6.0-preview1-final\build\EntityFramework.targets')" />
+</Project>

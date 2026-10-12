@@ -1,0 +1,544 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="QL_CA_FEModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="account">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="role" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="email" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="ban">
+          <Key>
+            <PropertyRef Name="ma_ban" />
+          </Key>
+          <Property Name="ma_ban" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ten_ban" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="trang_thai" Type="nvarchar" MaxLength="20" />
+          <Property Name="hinh_anh" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="chi_tiet_hoa_don">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ma_hd" Type="int" />
+          <Property Name="ma_mon" Type="int" />
+          <Property Name="so_luong" Type="int" />
+          <Property Name="gia" Type="int" />
+        </EntityType>
+        <EntityType Name="hoa_don">
+          <Key>
+            <PropertyRef Name="ma_hd" />
+          </Key>
+          <Property Name="ma_hd" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ma_ban" Type="int" Nullable="false" />
+          <Property Name="ma_nv" Type="int" />
+          <Property Name="thoi_gian" Type="datetime" />
+          <Property Name="trang_thai" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="loai_mon">
+          <Key>
+            <PropertyRef Name="ma_loai" />
+          </Key>
+          <Property Name="ma_loai" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ten_loai" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="mon">
+          <Key>
+            <PropertyRef Name="ma_mon" />
+          </Key>
+          <Property Name="ma_mon" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ten_mon" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="gia" Type="int" Nullable="false" />
+          <Property Name="ma_loai" Type="int" />
+          <Property Name="hinh_anh" Type="nvarchar" MaxLength="255" />
+          <Property Name="barcode" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="nhan_vien">
+          <Key>
+            <PropertyRef Name="ma_nv" />
+          </Key>
+          <Property Name="ma_nv" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ten_nv" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="sdt" Type="varchar" MaxLength="15" />
+          <Property Name="email" Type="varchar" MaxLength="100" />
+          <Property Name="ma_account" Type="int" />
+        </EntityType>
+        <EntityType Name="thanh_toan">
+          <Key>
+            <PropertyRef Name="ma_tt" />
+          </Key>
+          <Property Name="ma_tt" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ma_hd" Type="int" />
+          <Property Name="tong_tien" Type="int" />
+          <Property Name="giam_gia" Type="int" />
+          <Property Name="thanh_tien" Type="int" />
+          <Property Name="phuong_thuc" Type="nvarchar" MaxLength="50" />
+          <Property Name="ngay_tt" Type="datetime" />
+        </EntityType>
+        <Association Name="FK__chi_tiet___ma_hd__4D94879B">
+          <End Role="hoa_don" Type="Self.hoa_don" Multiplicity="0..1" />
+          <End Role="chi_tiet_hoa_don" Type="Self.chi_tiet_hoa_don" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="hoa_don">
+              <PropertyRef Name="ma_hd" />
+            </Principal>
+            <Dependent Role="chi_tiet_hoa_don">
+              <PropertyRef Name="ma_hd" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__chi_tiet___ma_mo__4E88ABD4">
+          <End Role="mon" Type="Self.mon" Multiplicity="0..1" />
+          <End Role="chi_tiet_hoa_don" Type="Self.chi_tiet_hoa_don" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mon">
+              <PropertyRef Name="ma_mon" />
+            </Principal>
+            <Dependent Role="chi_tiet_hoa_don">
+              <PropertyRef Name="ma_mon" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__hoa_don__ma_ban__48CFD27E">
+          <End Role="ban" Type="Self.ban" Multiplicity="1" />
+          <End Role="hoa_don" Type="Self.hoa_don" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ban">
+              <PropertyRef Name="ma_ban" />
+            </Principal>
+            <Dependent Role="hoa_don">
+              <PropertyRef Name="ma_ban" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__hoa_don__ma_nv__49C3F6B7">
+          <End Role="nhan_vien" Type="Self.nhan_vien" Multiplicity="0..1" />
+          <End Role="hoa_don" Type="Self.hoa_don" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="nhan_vien">
+              <PropertyRef Name="ma_nv" />
+            </Principal>
+            <Dependent Role="hoa_don">
+              <PropertyRef Name="ma_nv" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__mon__ma_loai__440B1D61">
+          <End Role="loai_mon" Type="Self.loai_mon" Multiplicity="0..1" />
+          <End Role="mon" Type="Self.mon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="loai_mon">
+              <PropertyRef Name="ma_loai" />
+            </Principal>
+            <Dependent Role="mon">
+              <PropertyRef Name="ma_loai" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__nhan_vien__ma_ac__3C69FB99">
+          <End Role="account" Type="Self.account" Multiplicity="0..1" />
+          <End Role="nhan_vien" Type="Self.nhan_vien" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="account">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="nhan_vien">
+              <PropertyRef Name="ma_account" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__thanh_toa__ma_hd__534D60F1">
+          <End Role="hoa_don" Type="Self.hoa_don" Multiplicity="0..1" />
+          <End Role="thanh_toan" Type="Self.thanh_toan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="hoa_don">
+              <PropertyRef Name="ma_hd" />
+            </Principal>
+            <Dependent Role="thanh_toan">
+              <PropertyRef Name="ma_hd" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QL_CA_FEModelStoreContainer">
+          <EntitySet Name="account" EntityType="Self.account" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ban" EntityType="Self.ban" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="chi_tiet_hoa_don" EntityType="Self.chi_tiet_hoa_don" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="hoa_don" EntityType="Self.hoa_don" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="loai_mon" EntityType="Self.loai_mon" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="mon" EntityType="Self.mon" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="nhan_vien" EntityType="Self.nhan_vien" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="thanh_toan" EntityType="Self.thanh_toan" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__chi_tiet___ma_hd__4D94879B" Association="Self.FK__chi_tiet___ma_hd__4D94879B">
+            <End Role="hoa_don" EntitySet="hoa_don" />
+            <End Role="chi_tiet_hoa_don" EntitySet="chi_tiet_hoa_don" />
+          </AssociationSet>
+          <AssociationSet Name="FK__chi_tiet___ma_mo__4E88ABD4" Association="Self.FK__chi_tiet___ma_mo__4E88ABD4">
+            <End Role="mon" EntitySet="mon" />
+            <End Role="chi_tiet_hoa_don" EntitySet="chi_tiet_hoa_don" />
+          </AssociationSet>
+          <AssociationSet Name="FK__hoa_don__ma_ban__48CFD27E" Association="Self.FK__hoa_don__ma_ban__48CFD27E">
+            <End Role="ban" EntitySet="ban" />
+            <End Role="hoa_don" EntitySet="hoa_don" />
+          </AssociationSet>
+          <AssociationSet Name="FK__hoa_don__ma_nv__49C3F6B7" Association="Self.FK__hoa_don__ma_nv__49C3F6B7">
+            <End Role="nhan_vien" EntitySet="nhan_vien" />
+            <End Role="hoa_don" EntitySet="hoa_don" />
+          </AssociationSet>
+          <AssociationSet Name="FK__mon__ma_loai__440B1D61" Association="Self.FK__mon__ma_loai__440B1D61">
+            <End Role="loai_mon" EntitySet="loai_mon" />
+            <End Role="mon" EntitySet="mon" />
+          </AssociationSet>
+          <AssociationSet Name="FK__nhan_vien__ma_ac__3C69FB99" Association="Self.FK__nhan_vien__ma_ac__3C69FB99">
+            <End Role="account" EntitySet="account" />
+            <End Role="nhan_vien" EntitySet="nhan_vien" />
+          </AssociationSet>
+          <AssociationSet Name="FK__thanh_toa__ma_hd__534D60F1" Association="Self.FK__thanh_toa__ma_hd__534D60F1">
+            <End Role="hoa_don" EntitySet="hoa_don" />
+            <End Role="thanh_toan" EntitySet="thanh_toan" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="QL_CA_FEModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="account">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="role" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="nhan_vien" Relationship="Self.FK__nhan_vien__ma_ac__3C69FB99" FromRole="account" ToRole="nhan_vien" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ban">
+          <Key>
+            <PropertyRef Name="ma_ban" />
+          </Key>
+          <Property Name="ma_ban" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ten_ban" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="trang_thai" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="hinh_anh" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="hoa_don" Relationship="Self.FK__hoa_don__ma_ban__48CFD27E" FromRole="ban" ToRole="hoa_don" />
+        </EntityType>
+        <EntityType Name="chi_tiet_hoa_don">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ma_hd" Type="Int32" />
+          <Property Name="ma_mon" Type="Int32" />
+          <Property Name="so_luong" Type="Int32" />
+          <Property Name="gia" Type="Int32" />
+          <NavigationProperty Name="hoa_don" Relationship="Self.FK__chi_tiet___ma_hd__4D94879B" FromRole="chi_tiet_hoa_don" ToRole="hoa_don" />
+          <NavigationProperty Name="mon" Relationship="Self.FK__chi_tiet___ma_mo__4E88ABD4" FromRole="chi_tiet_hoa_don" ToRole="mon" />
+        </EntityType>
+        <EntityType Name="hoa_don">
+          <Key>
+            <PropertyRef Name="ma_hd" />
+          </Key>
+          <Property Name="ma_hd" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ma_ban" Type="Int32" Nullable="false" />
+          <Property Name="ma_nv" Type="Int32" />
+          <Property Name="thoi_gian" Type="DateTime" Precision="3" />
+          <Property Name="trang_thai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ban" Relationship="Self.FK__hoa_don__ma_ban__48CFD27E" FromRole="hoa_don" ToRole="ban" />
+          <NavigationProperty Name="chi_tiet_hoa_don" Relationship="Self.FK__chi_tiet___ma_hd__4D94879B" FromRole="hoa_don" ToRole="chi_tiet_hoa_don" />
+          <NavigationProperty Name="nhan_vien" Relationship="Self.FK__hoa_don__ma_nv__49C3F6B7" FromRole="hoa_don" ToRole="nhan_vien" />
+          <NavigationProperty Name="thanh_toan" Relationship="Self.FK__thanh_toa__ma_hd__534D60F1" FromRole="hoa_don" ToRole="thanh_toan" />
+        </EntityType>
+        <EntityType Name="loai_mon">
+          <Key>
+            <PropertyRef Name="ma_loai" />
+          </Key>
+          <Property Name="ma_loai" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ten_loai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="mons" Relationship="Self.FK__mon__ma_loai__440B1D61" FromRole="loai_mon" ToRole="mon" />
+        </EntityType>
+        <EntityType Name="mon">
+          <Key>
+            <PropertyRef Name="ma_mon" />
+          </Key>
+          <Property Name="ma_mon" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ten_mon" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="gia" Type="Int32" Nullable="false" />
+          <Property Name="ma_loai" Type="Int32" />
+          <Property Name="hinh_anh" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="barcode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="chi_tiet_hoa_don" Relationship="Self.FK__chi_tiet___ma_mo__4E88ABD4" FromRole="mon" ToRole="chi_tiet_hoa_don" />
+          <NavigationProperty Name="loai_mon" Relationship="Self.FK__mon__ma_loai__440B1D61" FromRole="mon" ToRole="loai_mon" />
+        </EntityType>
+        <EntityType Name="nhan_vien">
+          <Key>
+            <PropertyRef Name="ma_nv" />
+          </Key>
+          <Property Name="ma_nv" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ten_nv" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sdt" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ma_account" Type="Int32" />
+          <NavigationProperty Name="account" Relationship="Self.FK__nhan_vien__ma_ac__3C69FB99" FromRole="nhan_vien" ToRole="account" />
+          <NavigationProperty Name="hoa_don" Relationship="Self.FK__hoa_don__ma_nv__49C3F6B7" FromRole="nhan_vien" ToRole="hoa_don" />
+        </EntityType>
+        <EntityType Name="thanh_toan">
+          <Key>
+            <PropertyRef Name="ma_tt" />
+          </Key>
+          <Property Name="ma_tt" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ma_hd" Type="Int32" />
+          <Property Name="tong_tien" Type="Int32" />
+          <Property Name="giam_gia" Type="Int32" />
+          <Property Name="thanh_tien" Type="Int32" />
+          <Property Name="phuong_thuc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ngay_tt" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="hoa_don" Relationship="Self.FK__thanh_toa__ma_hd__534D60F1" FromRole="thanh_toan" ToRole="hoa_don" />
+        </EntityType>
+        <Association Name="FK__nhan_vien__ma_ac__3C69FB99">
+          <End Role="account" Type="Self.account" Multiplicity="0..1" />
+          <End Role="nhan_vien" Type="Self.nhan_vien" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="account">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="nhan_vien">
+              <PropertyRef Name="ma_account" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__hoa_don__ma_ban__48CFD27E">
+          <End Role="ban" Type="Self.ban" Multiplicity="1" />
+          <End Role="hoa_don" Type="Self.hoa_don" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ban">
+              <PropertyRef Name="ma_ban" />
+            </Principal>
+            <Dependent Role="hoa_don">
+              <PropertyRef Name="ma_ban" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__chi_tiet___ma_hd__4D94879B">
+          <End Role="hoa_don" Type="Self.hoa_don" Multiplicity="0..1" />
+          <End Role="chi_tiet_hoa_don" Type="Self.chi_tiet_hoa_don" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="hoa_don">
+              <PropertyRef Name="ma_hd" />
+            </Principal>
+            <Dependent Role="chi_tiet_hoa_don">
+              <PropertyRef Name="ma_hd" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__chi_tiet___ma_mo__4E88ABD4">
+          <End Role="mon" Type="Self.mon" Multiplicity="0..1" />
+          <End Role="chi_tiet_hoa_don" Type="Self.chi_tiet_hoa_don" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mon">
+              <PropertyRef Name="ma_mon" />
+            </Principal>
+            <Dependent Role="chi_tiet_hoa_don">
+              <PropertyRef Name="ma_mon" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__hoa_don__ma_nv__49C3F6B7">
+          <End Role="nhan_vien" Type="Self.nhan_vien" Multiplicity="0..1" />
+          <End Role="hoa_don" Type="Self.hoa_don" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="nhan_vien">
+              <PropertyRef Name="ma_nv" />
+            </Principal>
+            <Dependent Role="hoa_don">
+              <PropertyRef Name="ma_nv" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__thanh_toa__ma_hd__534D60F1">
+          <End Role="hoa_don" Type="Self.hoa_don" Multiplicity="0..1" />
+          <End Role="thanh_toan" Type="Self.thanh_toan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="hoa_don">
+              <PropertyRef Name="ma_hd" />
+            </Principal>
+            <Dependent Role="thanh_toan">
+              <PropertyRef Name="ma_hd" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__mon__ma_loai__440B1D61">
+          <End Role="loai_mon" Type="Self.loai_mon" Multiplicity="0..1" />
+          <End Role="mon" Type="Self.mon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="loai_mon">
+              <PropertyRef Name="ma_loai" />
+            </Principal>
+            <Dependent Role="mon">
+              <PropertyRef Name="ma_loai" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QL_CA_FEEntities11" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="accounts" EntityType="Self.account" />
+          <EntitySet Name="bans" EntityType="Self.ban" />
+          <EntitySet Name="chi_tiet_hoa_don" EntityType="Self.chi_tiet_hoa_don" />
+          <EntitySet Name="hoa_don" EntityType="Self.hoa_don" />
+          <EntitySet Name="loai_mon" EntityType="Self.loai_mon" />
+          <EntitySet Name="mons" EntityType="Self.mon" />
+          <EntitySet Name="nhan_vien" EntityType="Self.nhan_vien" />
+          <EntitySet Name="thanh_toan" EntityType="Self.thanh_toan" />
+          <AssociationSet Name="FK__nhan_vien__ma_ac__3C69FB99" Association="Self.FK__nhan_vien__ma_ac__3C69FB99">
+            <End Role="account" EntitySet="accounts" />
+            <End Role="nhan_vien" EntitySet="nhan_vien" />
+          </AssociationSet>
+          <AssociationSet Name="FK__hoa_don__ma_ban__48CFD27E" Association="Self.FK__hoa_don__ma_ban__48CFD27E">
+            <End Role="ban" EntitySet="bans" />
+            <End Role="hoa_don" EntitySet="hoa_don" />
+          </AssociationSet>
+          <AssociationSet Name="FK__chi_tiet___ma_hd__4D94879B" Association="Self.FK__chi_tiet___ma_hd__4D94879B">
+            <End Role="hoa_don" EntitySet="hoa_don" />
+            <End Role="chi_tiet_hoa_don" EntitySet="chi_tiet_hoa_don" />
+          </AssociationSet>
+          <AssociationSet Name="FK__chi_tiet___ma_mo__4E88ABD4" Association="Self.FK__chi_tiet___ma_mo__4E88ABD4">
+            <End Role="mon" EntitySet="mons" />
+            <End Role="chi_tiet_hoa_don" EntitySet="chi_tiet_hoa_don" />
+          </AssociationSet>
+          <AssociationSet Name="FK__hoa_don__ma_nv__49C3F6B7" Association="Self.FK__hoa_don__ma_nv__49C3F6B7">
+            <End Role="nhan_vien" EntitySet="nhan_vien" />
+            <End Role="hoa_don" EntitySet="hoa_don" />
+          </AssociationSet>
+          <AssociationSet Name="FK__thanh_toa__ma_hd__534D60F1" Association="Self.FK__thanh_toa__ma_hd__534D60F1">
+            <End Role="hoa_don" EntitySet="hoa_don" />
+            <End Role="thanh_toan" EntitySet="thanh_toan" />
+          </AssociationSet>
+          <AssociationSet Name="FK__mon__ma_loai__440B1D61" Association="Self.FK__mon__ma_loai__440B1D61">
+            <End Role="loai_mon" EntitySet="loai_mon" />
+            <End Role="mon" EntitySet="mons" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="QL_CA_FEModelStoreContainer" CdmEntityContainer="QL_CA_FEEntities11">
+          <EntitySetMapping Name="accounts">
+            <EntityTypeMapping TypeName="QL_CA_FEModel.account">
+              <MappingFragment StoreEntitySet="account">
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="role" ColumnName="role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="bans">
+            <EntityTypeMapping TypeName="QL_CA_FEModel.ban">
+              <MappingFragment StoreEntitySet="ban">
+                <ScalarProperty Name="ma_ban" ColumnName="ma_ban" />
+                <ScalarProperty Name="ten_ban" ColumnName="ten_ban" />
+                <ScalarProperty Name="trang_thai" ColumnName="trang_thai" />
+                <ScalarProperty Name="hinh_anh" ColumnName="hinh_anh" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="chi_tiet_hoa_don">
+            <EntityTypeMapping TypeName="QL_CA_FEModel.chi_tiet_hoa_don">
+              <MappingFragment StoreEntitySet="chi_tiet_hoa_don">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ma_hd" ColumnName="ma_hd" />
+                <ScalarProperty Name="ma_mon" ColumnName="ma_mon" />
+                <ScalarProperty Name="so_luong" ColumnName="so_luong" />
+                <ScalarProperty Name="gia" ColumnName="gia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="hoa_don">
+            <EntityTypeMapping TypeName="QL_CA_FEModel.hoa_don">
+              <MappingFragment StoreEntitySet="hoa_don">
+                <ScalarProperty Name="ma_hd" ColumnName="ma_hd" />
+                <ScalarProperty Name="ma_ban" ColumnName="ma_ban" />
+                <ScalarProperty Name="ma_nv" ColumnName="ma_nv" />
+                <ScalarProperty Name="thoi_gian" ColumnName="thoi_gian" />
+                <ScalarProperty Name="trang_thai" ColumnName="trang_thai" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="loai_mon">
+            <EntityTypeMapping TypeName="QL_CA_FEModel.loai_mon">
+              <MappingFragment StoreEntitySet="loai_mon">
+                <ScalarProperty Name="ma_loai" ColumnName="ma_loai" />
+                <ScalarProperty Name="ten_loai" ColumnName="ten_loai" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mons">
+            <EntityTypeMapping TypeName="QL_CA_FEModel.mon">
+              <MappingFragment StoreEntitySet="mon">
+                <ScalarProperty Name="ma_mon" ColumnName="ma_mon" />
+                <ScalarProperty Name="ten_mon" ColumnName="ten_mon" />
+                <ScalarProperty Name="gia" ColumnName="gia" />
+                <ScalarProperty Name="ma_loai" ColumnName="ma_loai" />
+                <ScalarProperty Name="hinh_anh" ColumnName="hinh_anh" />
+                <ScalarProperty Name="barcode" ColumnName="barcode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="nhan_vien">
+            <EntityTypeMapping TypeName="QL_CA_FEModel.nhan_vien">
+              <MappingFragment StoreEntitySet="nhan_vien">
+                <ScalarProperty Name="ma_nv" ColumnName="ma_nv" />
+                <ScalarProperty Name="ten_nv" ColumnName="ten_nv" />
+                <ScalarProperty Name="sdt" ColumnName="sdt" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="ma_account" ColumnName="ma_account" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="thanh_toan">
+            <EntityTypeMapping TypeName="QL_CA_FEModel.thanh_toan">
+              <MappingFragment StoreEntitySet="thanh_toan">
+                <ScalarProperty Name="ma_tt" ColumnName="ma_tt" />
+                <ScalarProperty Name="ma_hd" ColumnName="ma_hd" />
+                <ScalarProperty Name="tong_tien" ColumnName="tong_tien" />
+                <ScalarProperty Name="giam_gia" ColumnName="giam_gia" />
+                <ScalarProperty Name="thanh_tien" ColumnName="thanh_tien" />
+                <ScalarProperty Name="phuong_thuc" ColumnName="phuong_thuc" />
+                <ScalarProperty Name="ngay_tt" ColumnName="ngay_tt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
